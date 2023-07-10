@@ -29,9 +29,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    setState(() {    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,16 +37,16 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: AppColors.wheat,
       body:Column(
         children: <Widget> [
-          Container(
-            height: 350,
+          SizedBox(
+            height: 500,
             child: Stack(
                 children:<Widget>[
                   Positioned(
-                    top: -36,
+                    top: -58,
                     width: width,
-                    height: 350,
+                    height: 550,
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage('assets/images/background.png'),
                             fit: BoxFit.fill,
@@ -59,18 +56,76 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Positioned(
                     width: width + 40,
-                    height: 350,
+                    height: 550,
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage('assets/images/background-2.png'),
                             fit: BoxFit.fill,
                           )
                       ),
                     ),
-                  ),]
+                  ),
+                ]
             )
-          ),],
+          ),
+          Column(
+            children: <Widget>[
+              const Text(
+                'Welcome to COV',
+                style: TextStyle(
+                  color: AppColors.caribbeanCurrent,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50,
+                  fontFamily: 'RobotoMono',
+                ),
+              ),
+              const SizedBox(height: 40,),
+              Center(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 50,
+                      width: 150,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        child:const Text(
+                          'Sign In',
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    SizedBox(
+                      height: 50,
+                      width: 150,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        child:const Text(
+                            'Sign Up',
+                          style: TextStyle(
+                            fontSize: 22,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          )],
 
       ),
 
