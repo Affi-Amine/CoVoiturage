@@ -18,6 +18,7 @@ class Signin extends StatelessWidget {
         child: Center(
           child: Column(
             children: <Widget>[
+              SizedBox(height: 50,),
               SizedBox(
                 width:150,
                 child: Image(
@@ -31,17 +32,17 @@ class Signin extends StatelessWidget {
                   fontSize: 15,
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(height: 40,),
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25),
                 child: TextField(
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.caputMortuum),
+                      borderSide: BorderSide(color: Colors.grey),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey)
+                      borderSide: BorderSide(color: AppColors.caputMortuum)
                     ),
                     fillColor: Colors.white70,
                     hintText: 'Username',
@@ -52,23 +53,33 @@ class Signin extends StatelessWidget {
                     hintMaxLines: 2,
 
                   ),
-                  obscureText: true,
+                  obscureText: false,
                 ),
               ),
 
               SizedBox(height: 10),
 
-             TextField(
-               decoration: InputDecoration(
-                 hintText: 'Password',
-                 hintStyle: TextStyle(
-                   color: Colors.grey,
-                   fontStyle: FontStyle.italic,
-                 ),
-                 hintMaxLines: 2,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: AppColors.caputMortuum)
+                    ),
+                    fillColor: Colors.white70,
+                    hintText: 'Password',
+                    hintStyle: TextStyle(
+                      color: Colors.grey,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    hintMaxLines: 2,
 
-               ),
-               obscureText: true,
+                  ),
+                  obscureText: true,
+                ),
               ),
             ],
           ),
