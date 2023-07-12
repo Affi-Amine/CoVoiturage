@@ -1,34 +1,38 @@
+import 'package:covoiturage/constants/app_colors.dart';
 import 'package:covoiturage/screens/home/profile_screen.dart';
 import 'package:covoiturage/screens/home/publish_screen.dart';
 import 'package:covoiturage/screens/home/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _HomeState createState() => _HomeState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeScreenState extends State<HomeScreen> {
   final items = const [
     Icon(
       Icons.search,
+      color: Colors.white,
       size: 30,
     ),
     Icon(
       Icons.publish_sharp,
+      color: Colors.white,
       size: 30,
     ),
     Icon(
       Icons.person,
+      color: Colors.white,
       size: 30,
     )
   ];
 
-  int index = 1;
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +52,7 @@ class _HomeState extends State<Home> {
           });
         },
         height: 50,
+        color: AppColors.secondaryColor,
         backgroundColor: Colors.transparent,
         animationDuration: const Duration(milliseconds: 300),
         // animationCurve: ,
@@ -79,8 +84,11 @@ class _HomeState extends State<Home> {
       case 1:
         widget = const PublishScreen();
         break;
-      default:
+      case 2:
         widget = const ProfileScreen();
+        break;
+      default:
+        widget = const SearchScreen();
         break;
     }
     return widget;

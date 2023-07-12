@@ -8,7 +8,7 @@ class Welcome extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: AppColors.wheat,
+      backgroundColor: AppColors.primaryColor,
       body:Column(
         children: <Widget> [
           SizedBox(
@@ -48,7 +48,7 @@ class Welcome extends StatelessWidget {
               const Text(
                 'Welcome to COV',
                 style: TextStyle(
-                  color: AppColors.caribbeanCurrent,
+                  color: AppColors.primaryColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 50,
                   fontFamily: 'RobotoMono',
