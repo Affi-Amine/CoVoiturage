@@ -20,6 +20,7 @@ class Signin extends StatelessWidget {
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(40)),
           color: Colors.white,
+
         ),
         child: SafeArea(
           child: Center(

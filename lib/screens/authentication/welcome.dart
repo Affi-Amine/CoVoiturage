@@ -9,7 +9,9 @@ class Welcome extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
+
       backgroundColor: AppColors.quintenaryColor,
+
       body:Column(
         children: <Widget> [
           SizedBox(
