@@ -1,123 +1,88 @@
+import 'package:covoiturage/screens/home/profile_screen.dart';
+import 'package:covoiturage/screens/home/publish_screen.dart';
+import 'package:covoiturage/screens/home/search_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _HomeScreenState createState() => _HomeScreenState();
+  _HomeState createState() => _HomeState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
+class _HomeState extends State<Home> {
+  final items = const [
+    Icon(
+      Icons.search,
+      size: 30,
+    ),
+    Icon(
+      Icons.publish_sharp,
+      size: 30,
+    ),
+    Icon(
+      Icons.person,
+      size: 30,
+    )
+  ];
+
+  int index = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Covoiturage App'),
-      ),
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Image.asset(
-                  'assets/images/car_illustration.jpg',
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [Colors.black, Colors.purple],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Center(
-            child: _buildPageContent(),
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
+      extendBody: true,
+      // backgroundColor: Colors.blue,
+      // appBar: AppBar(
+      //   title: const Text('Curved Navigation Bar'),
+      //   backgroundColor: Colors.transparent,
+      // ),
+      bottomNavigationBar: CurvedNavigationBar(
+        items: items,
+        index: index,
+        onTap: (selctedIndex) {
           setState(() {
-            _currentIndex = index;
+            index = selctedIndex;
           });
         },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+        height: 50,
+        backgroundColor: Colors.transparent,
+        animationDuration: const Duration(milliseconds: 300),
+        // animationCurve: ,
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color.fromRGBO(161, 232, 175, 1),
+              Color.fromRGBO(58, 36, 73, 1),
+            ],
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp,
+            transform: GradientRotation(130 * 3.1415927 / 180),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.car_rental),
-            label: 'Publish',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        selectedItemColor: Colors.purple,
-        unselectedItemColor: Colors.white,
+        ),
       ),
     );
   }
 
-  Widget _buildPageContent() {
-    if (_currentIndex == 0) {
-      return _buildSearchPage();
-    } else if (_currentIndex == 1) {
-      return _buildPublishPage();
-    } else {
-      return _buildProfilePage();
+  Widget getSelectedWidget({required int index}) {
+    Widget widget;
+    switch (index) {
+      case 0:
+        widget = const SearchScreen();
+        break;
+      case 1:
+        widget = const PublishScreen();
+        break;
+      default:
+        widget = const ProfileScreen();
+        break;
     }
-  }
-
-  Widget _buildSearchPage() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-          'Search Page',
-          style: TextStyle(fontSize: 24, color: Colors.white),
-        ),
-        const SizedBox(height: 16),
-        ElevatedButton(
-          onPressed: () {
-            // Add search functionality here
-          },
-          child: const Text('SEARCH'),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildPublishPage() {
-    return const Center(
-      child: Text(
-        'Publish Page',
-        style: TextStyle(fontSize: 24, color: Colors.white),
-      ),
-    );
-  }
-
-  Widget _buildProfilePage() {
-    return const Center(
-      child: Text(
-        'Profile Page',
-        style: TextStyle(fontSize: 24, color: Colors.white),
-      ),
-    );
+    return widget;
   }
 }
