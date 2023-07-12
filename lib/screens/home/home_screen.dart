@@ -29,8 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int index = 0;
 
-  TextEditingController _departureController = TextEditingController();
-  TextEditingController _destinationController = TextEditingController();
+  final TextEditingController _departureController = TextEditingController();
+  final TextEditingController _destinationController = TextEditingController();
 
   @override
   void dispose() {
@@ -77,9 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            margin: EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
             child: Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -90,14 +90,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PlaceSelectionScreen(
+                            builder: (context) => const PlaceSelectionScreen(
                               title: 'Select Place of Departure',
                             ),
                           ),
                         );
                       }
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Place of Departure',
                       prefixIcon: Icon(Icons.location_on),
                       focusedBorder: UnderlineInputBorder(
@@ -105,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   TextFormField(
                     controller: _destinationController,
                     onTap: () {
@@ -113,14 +113,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => PlaceSelectionScreen(
+                            builder: (context) => const PlaceSelectionScreen(
                               title: 'Select Destination',
                             ),
                           ),
                         );
                       }
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Destination',
                       prefixIcon: Icon(Icons.location_on),
                       focusedBorder: UnderlineInputBorder(
@@ -128,13 +128,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     children: [
                       Expanded(
                         flex: 3,
                         child: TextFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Date of Departure',
                             prefixIcon: Icon(Icons.calendar_today),
                             focusedBorder: UnderlineInputBorder(
@@ -144,11 +144,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           keyboardType: TextInputType.datetime,
                         ),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Expanded(
                         flex: 1,
                         child: TextFormField(
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Number of Seats',
                             prefixIcon: Icon(Icons.event_seat),
                             focusedBorder: UnderlineInputBorder(
@@ -160,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton.icon(
                     onPressed: () {},
                     style: ButtonStyle(
@@ -170,11 +170,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         Colors.purple.withOpacity(0.8),
                       ),
                       padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
                       ),
                     ),
-                    icon: Icon(Icons.search),
-                    label: Text('SEARCH'),
+                    icon: const Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
+                    label: const Text(
+                      'SEARCH',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ],
               ),
@@ -219,11 +226,11 @@ class PlaceSelectionScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Search',
                     border: InputBorder.none,
                     suffixIcon: Icon(Icons.search),
@@ -245,11 +252,11 @@ class PlaceSelectionScreen extends StatelessWidget {
                         Colors.white,
                       ),
                     ),
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.my_location,
                       color: Colors.black,
                     ),
-                    label: Text(
+                    label: const Text(
                       'Use Current Location',
                       style: TextStyle(
                         color: Colors.black,
