@@ -1,3 +1,5 @@
+import 'package:covoiturage/screens/authentication/signIn.dart';
+import 'package:covoiturage/screens/authentication/signUp.dart';
 import 'package:flutter/material.dart';
 import 'package:covoiturage/constants/app_colors.dart';
 
@@ -8,7 +10,8 @@ class Welcome extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: AppColors.quintenaryColor,
+      resizeToAvoidBottomInset: false,
       body:Column(
         children: <Widget> [
           SizedBox(
@@ -62,7 +65,20 @@ class Welcome extends StatelessWidget {
                       height: 50,
                       width: 150,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showGeneralDialog(
+                              barrierDismissible: true,
+                              barrierLabel: "Sign In",
+                              context: context,
+                              pageBuilder:(context, _, __) =>Center(
+                                child: Container(
+                                  height: 600,
+                                  margin: EdgeInsets.symmetric(horizontal: 15),
+                                  child: Signin(  ),
+                                ),
+                              )
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -81,7 +97,21 @@ class Welcome extends StatelessWidget {
                       height: 50,
                       width: 150,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showGeneralDialog(
+                              barrierDismissible: true,
+                              barrierLabel: "Sign Up",
+                              context: context,
+                              pageBuilder:(context, _, __) =>Center(
+                                child: Container(
+                                  height: 650,
+
+                                  margin: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+                                  child: Signup(  ),
+                                ),
+                              )
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -106,3 +136,4 @@ class Welcome extends StatelessWidget {
     );
   }
 }
+
