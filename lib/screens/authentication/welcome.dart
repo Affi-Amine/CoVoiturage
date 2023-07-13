@@ -74,7 +74,7 @@ class Welcome extends StatelessWidget {
                                 child: Container(
                                   height: 600,
                                   margin: EdgeInsets.symmetric(horizontal: 15),
-                                  child: Signin(  ),
+                                  child: SignIn(  ),
                                 ),
                               )
                           );
@@ -107,7 +107,7 @@ class Welcome extends StatelessWidget {
                                   height: 650,
 
                                   margin: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
-                                  child: Signup(  ),
+                                  child: SignUp(  ),
                                 ),
                               )
                           );

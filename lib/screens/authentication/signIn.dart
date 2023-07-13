@@ -1,10 +1,11 @@
+import 'package:covoiturage/screens/authentication/signUp.dart';
 import 'package:flutter/material.dart';
 import 'package:covoiturage/constants/app_colors.dart';
 import 'package:covoiturage/screens/authentication/BoxTextField.dart';
 import 'package:covoiturage/screens/authentication/circileTile.dart';
 
 
-class Signin extends StatelessWidget {
+class SignIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class Signin extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(height: 40,),
+                    const SizedBox(height: 20,),
 
                     const SizedBox(
                       height: 50,
@@ -86,13 +87,13 @@ class Signin extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25.0,vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 10),
                       child: ElevatedButton.icon(
                           onPressed: (){},
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primaryColor,
-                            minimumSize: Size(double.infinity, 56),
-                            shape: RoundedRectangleBorder(
+                            backgroundColor: Colors.purple,
+                            minimumSize: const Size(double.infinity, 56),
+                            shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20),
@@ -102,8 +103,14 @@ class Signin extends StatelessWidget {
                             )
 
                           ),
-                          icon: const Icon(Icons.arrow_forward),
-                          label: const Text("Sign In")),
+                          icon: const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                          ),
+                          label: const Text(
+                            "Sign In",
+                            style: TextStyle(color: Colors.white),
+                          )),
                     ),
                     Row(
                       children: [
@@ -128,8 +135,8 @@ class Signin extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
@@ -158,11 +165,28 @@ class Signin extends StatelessWidget {
                               color: Colors.grey[400],
                             ),
                           ),
-                          Text(
-                            ' Registe now',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.blue,
+                          TextButton(
+                            onPressed: () {
+                              showGeneralDialog(
+                                  barrierDismissible: true,
+                                  barrierLabel: "Sign Up",
+                                  context: context,
+                                  pageBuilder:(context, _, __) =>Center(
+                                    child: Container(
+                                      height: 650,
+
+                                      margin: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+                                      child: SignUp(  ),
+                                    ),
+                                  )
+                              );
+                            },
+                            child: const Text(
+                              ' Registe now',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.blue,
+                              ),
                             ),
                           )
                         ],
