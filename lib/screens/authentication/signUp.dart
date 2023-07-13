@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 
-class Signup extends StatelessWidget {
+class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +76,10 @@ class Signup extends StatelessWidget {
                         decoration: InputDecoration(
 
                           labelText: 'Phone Number',
-                          floatingLabelStyle: TextStyle(
-                              color: AppColors.quintenaryColor
+                          floatingLabelStyle: const TextStyle(
+                              color: Colors.grey
                           ),
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                             color: Colors.grey,
                             fontStyle: FontStyle.italic,
                           ),
@@ -88,11 +88,11 @@ class Signup extends StatelessWidget {
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0),
-                            borderSide: BorderSide(color: Colors.grey),
+                            borderSide: const BorderSide(color: Colors.grey),
                           ),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide: BorderSide(color: AppColors.quintenaryColor)
+                              borderSide: const BorderSide(color: Colors.purple)
                           ),
                         ),
                         initialCountryCode: 'TN',
@@ -101,13 +101,13 @@ class Signup extends StatelessWidget {
                     const SizedBox(height: 10,),
 
                     Padding(
-                      padding: EdgeInsets.only(bottom: 10,left: 25,right: 25),
+                      padding: const EdgeInsets.only(bottom: 10,left: 25,right: 25),
                       child: ElevatedButton.icon(
                           onPressed: (){},
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.purple,
-                              minimumSize: Size(double.infinity, 56),
-                              shape: RoundedRectangleBorder(
+                              minimumSize: const Size(double.infinity, 56),
+                              shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(20),
                                     topRight: Radius.circular(20),
@@ -149,8 +149,8 @@ class Signup extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
@@ -179,7 +179,7 @@ class Signup extends StatelessWidget {
                               color: Colors.grey[400],
                             ),
                           ),
-                          Text(
+                          const Text(
                             '   Log in now',
                             style: TextStyle(
                               fontSize: 13,

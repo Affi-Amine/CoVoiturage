@@ -7,7 +7,7 @@ class BoxTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final IconData icon;
-  BoxTextField({
+  const BoxTextField({
     super.key,
     required this.controller,
     required this.hintText,
@@ -17,17 +17,20 @@ class BoxTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
+          floatingLabelBehavior:FloatingLabelBehavior.auto,
           labelText: hintText,
-          floatingLabelBehavior: FloatingLabelBehavior.auto,
+          labelStyle: TextStyle(
+            color: Colors.grey,
+          ),
           prefixIcon: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Icon(
               icon,
-            color: AppColors.quintenaryColor,
+            color: Colors.purple,
             ),
           ),
           border: OutlineInputBorder(
@@ -35,21 +38,14 @@ class BoxTextField extends StatelessWidget {
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25.0),
-            borderSide: BorderSide(color: Colors.grey),
+            borderSide: const BorderSide(color: Colors.grey),
           ),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25.0),
-              borderSide: BorderSide(color: AppColors.quintenaryColor)
+              borderSide: const BorderSide(color: Colors.purple)
           ),
           fillColor: Colors.white70,
           filled: true,
-          hintText: hintText,
-          hintStyle: TextStyle(
-            color: Colors.grey,
-            fontStyle: FontStyle.italic,
-          ),
-          hintMaxLines: 2,
-
         ),
         obscureText: obscureText,
       ),
