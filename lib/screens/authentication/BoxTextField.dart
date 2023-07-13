@@ -3,10 +3,11 @@ import 'package:covoiturage/constants/app_colors.dart';
 
 class BoxTextField extends StatelessWidget {
   final controller;
+
   final String hintText;
   final bool obscureText;
   final IconData icon;
-  const BoxTextField({
+  BoxTextField({
     super.key,
     required this.controller,
     required this.hintText,
@@ -17,12 +18,17 @@ class BoxTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 25),
-      child: TextFormField(
+      child: TextField(
         controller: controller,
         decoration: InputDecoration(
+          labelText: hintText,
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
           prefixIcon: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Icon(icon),
+            child: Icon(
+              icon,
+            color: AppColors.quintenaryColor,
+            ),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25.0),

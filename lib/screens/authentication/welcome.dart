@@ -1,4 +1,5 @@
 import 'package:covoiturage/screens/authentication/signIn.dart';
+import 'package:covoiturage/screens/authentication/signUp.dart';
 import 'package:flutter/material.dart';
 import 'package:covoiturage/constants/app_colors.dart';
 
@@ -11,6 +12,7 @@ class Welcome extends StatelessWidget {
     return Scaffold(
 
       backgroundColor: AppColors.quintenaryColor,
+      resizeToAvoidBottomInset: false,
 
       body:Column(
         children: <Widget> [
@@ -68,7 +70,7 @@ class Welcome extends StatelessWidget {
                         onPressed: () {
                           showGeneralDialog(
                               barrierDismissible: true,
-                              barrierLabel: "Sign Up",
+                              barrierLabel: "Sign In",
                               context: context,
                               pageBuilder:(context, _, __) =>Center(
                                 child: Container(
@@ -97,7 +99,21 @@ class Welcome extends StatelessWidget {
                       height: 50,
                       width: 150,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showGeneralDialog(
+                              barrierDismissible: true,
+                              barrierLabel: "Sign Up",
+                              context: context,
+                              pageBuilder:(context, _, __) =>Center(
+                                child: Container(
+                                  height: 650,
+
+                                  margin: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+                                  child: Signup(  ),
+                                ),
+                              )
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
