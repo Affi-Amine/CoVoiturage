@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:covoiturage/screens/home/profile_screen.dart';
+import 'package:covoiturage/screens/home/publish_screen.dart';
+import 'package:covoiturage/screens/home/search_screen.dart';
 import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,12 +33,70 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int index = 0;
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBody: true,
+      bottomNavigationBar: CurvedNavigationBar(
+        items: items,
+        index: index,
+        onTap: (selectedIndex) {
+          setState(() {
+            index = selectedIndex;
+          });
+        },
+        height: 50,
+        color: Colors.purple,
+        backgroundColor: Colors.transparent,
+        animationDuration: const Duration(milliseconds: 300),
+      ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color.fromRGBO(161, 232, 175, 1),
+              Color.fromRGBO(58, 36, 73, 1),
+            ],
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp,
+            transform: GradientRotation(130 * 3.1415927 / 180),
+          ),
+        ),
+        child: Center(
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: index == 0
+                ? HomeContentCard()
+                : (index == 1
+                    ? const PublishScreen()
+                    : (index == 2 ? const ProfileScreen() : const SizedBox())),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HomeContentCard extends StatefulWidget {
+  @override
+  State<HomeContentCard> createState() => _HomeContentCardState();
+}
+
+class _HomeContentCardState extends State<HomeContentCard> {
   final TextEditingController _departureController = TextEditingController();
+
   final TextEditingController _destinationController = TextEditingController();
+
   final TextEditingController _dateController = TextEditingController();
+
   final TextEditingController _seatsController = TextEditingController();
+
   DateTime _selectedDate = DateTime.now();
+
   final DateFormat _dateFormat = DateFormat('yyyy-MM-dd');
+
   int _selectedSeats = 1;
 
   @override
@@ -55,10 +116,8 @@ class _HomeScreenState extends State<HomeScreen> {
       lastDate: DateTime(2100),
     );
     if (picked != null && picked != _selectedDate) {
-      setState(() {
-        _selectedDate = picked;
-        _dateController.text = _dateFormat.format(_selectedDate);
-      });
+      _selectedDate = picked;
+      _dateController.text = _dateFormat.format(_selectedDate);
     }
   }
 
@@ -75,173 +134,129 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     );
     if (selectedSeats != null) {
-      setState(() {
-        _selectedSeats = selectedSeats;
-        _seatsController.text = _selectedSeats.toString();
-      });
+      _selectedSeats = selectedSeats;
+      _seatsController.text = _selectedSeats.toString();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      bottomNavigationBar: CurvedNavigationBar(
-        items: items,
-        index: index,
-        onTap: (selectedIndex) {
-          setState(() {
-            index = selectedIndex;
-          });
-        },
-        height: 50,
-        color: Colors.purple, 
-        backgroundColor: Colors.transparent,
-        animationDuration: const Duration(milliseconds: 300),
+    return Card(
+      elevation: 4,
+      shadowColor: Colors.black54,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [
-              Color.fromRGBO(161, 232, 175, 1),
-              Color.fromRGBO(58, 36, 73, 1),
-            ],
-            stops: [0.0, 1.0],
-            tileMode: TileMode.clamp,
-            transform: GradientRotation(130 * 3.1415927 / 180),
-          ),
-        ),
-        child: Center(
-          child: Card(
-            elevation: 4,
-            shadowColor: Colors.black54,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextFormField(
-                    controller: _departureController,
-                    onTap: () {
-                      if (index == 0) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const PlaceSelectionScreen(
-                              title: 'Select Place of Departure',
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    decoration: const InputDecoration(
-                      labelText: 'Place of Departure',
-                      prefixIcon: Icon(Icons.location_on),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purple),
-                      ),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormField(
+              controller: _departureController,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PlaceSelectionScreen(
+                      title: 'Select Place of Departure',
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    controller: _destinationController,
-                    onTap: () {
-                      if (index == 0) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const PlaceSelectionScreen(
-                              title: 'Select Destination',
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    decoration: const InputDecoration(
-                      labelText: 'Destination',
-                      prefixIcon: Icon(Icons.location_on),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.purple),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: TextFormField(
-                          onTap: () {
-                            if (index == 0) {
-                              _selectDate(context);
-                            }
-                          },
-                          controller: _dateController,
-                          decoration: const InputDecoration(
-                            labelText: 'Date of Departure',
-                            prefixIcon: Icon(Icons.calendar_today),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.purple),
-                            ),
-                          ),
-                          keyboardType: TextInputType.datetime,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        flex: 1,
-                        child: TextFormField(
-                          onTap: () {
-                            if (index == 0) {
-                              _selectSeats(context);
-                            }
-                          },
-                          controller: _seatsController,
-                          decoration: const InputDecoration(
-                            labelText: 'Number of Seats',
-                            prefixIcon: Icon(Icons.event_seat),
-                            focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.purple),
-                            ),
-                          ),
-                          keyboardType: TextInputType.number,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton.icon(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.purple),
-                      overlayColor: MaterialStateProperty.all<Color>(
-                        Colors.purple.withOpacity(0.8),
-                      ),
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                        const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 20),
-                      ),
-                    ),
-                    icon: const Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
-                    label: const Text(
-                      'SEARCH',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
+                );
+              },
+              decoration: const InputDecoration(
+                labelText: 'Place of Departure',
+                prefixIcon: Icon(Icons.location_on),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple),
+                ),
               ),
             ),
-          ),
+            const SizedBox(height: 10),
+            TextFormField(
+              controller: _destinationController,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PlaceSelectionScreen(
+                      title: 'Select Destination',
+                    ),
+                  ),
+                );
+              },
+              decoration: const InputDecoration(
+                labelText: 'Destination',
+                prefixIcon: Icon(Icons.location_on),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.purple),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: TextFormField(
+                    onTap: () {
+                      _selectDate(context);
+                    },
+                    controller: _dateController,
+                    decoration: const InputDecoration(
+                      labelText: 'Date of Departure',
+                      prefixIcon: Icon(Icons.calendar_today),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.purple),
+                      ),
+                    ),
+                    keyboardType: TextInputType.datetime,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  flex: 1,
+                  child: TextFormField(
+                    onTap: () {
+                      _selectSeats(context);
+                    },
+                    controller: _seatsController,
+                    decoration: const InputDecoration(
+                      labelText: 'Seats',
+                      prefixIcon: Icon(Icons.event_seat),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.purple),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: () {},
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.purple),
+                overlayColor: MaterialStateProperty.all<Color>(
+                  Colors.purple.withOpacity(0.8),
+                ),
+                padding: MaterialStateProperty.all<EdgeInsets>(
+                  const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                ),
+              ),
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              label: const Text(
+                'SEARCH',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -257,7 +272,11 @@ class PlaceSelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(
+          title,
+          style: const TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -334,12 +353,13 @@ class NumberPickerDialog extends StatefulWidget {
   final int maxValue;
   final int initialIntegerValue;
 
-  const NumberPickerDialog({super.key, 
+  const NumberPickerDialog({
+    Key? key,
     required this.title,
     required this.minValue,
     required this.maxValue,
     required this.initialIntegerValue,
-  });
+  }) : super(key: key);
 
   @override
   _NumberPickerDialogState createState() => _NumberPickerDialogState();
