@@ -1,5 +1,5 @@
-import 'package:covoiturage/screens/authentication/signIn.dart';
-import 'package:covoiturage/screens/authentication/welcome.dart';
+//import 'package:covoiturage/screens/authentication/signIn.dart';
+//import 'package:covoiturage/screens/authentication/welcome.dart';
 import 'package:covoiturage/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:covoiturage/screens/home/profile_screen.dart';
 import 'package:covoiturage/screens/home/publish_screen.dart';
-import 'package:covoiturage/screens/home/search_screen.dart';
+//import 'package:covoiturage/screens/home/search_screen.dart';
 import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ? HomeContentCard()
                 : (index == 1
                     ? const PublishScreen()
-                    : (index == 2 ? const ProfileScreen() : const SizedBox())),
+                    : (index == 2 ? ProfileScreen() : const SizedBox())),
           ),
         ),
       ),
@@ -149,7 +149,7 @@ class _HomeContentCardState extends State<HomeContentCard> {
       ),
       margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(30),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -298,7 +298,7 @@ class PlaceSelectionScreen extends StatelessWidget {
               elevation: 4,
               shadowColor: Colors.black54,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
               ),
               margin: const EdgeInsets.all(20),
               child: Padding(
