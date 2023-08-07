@@ -40,6 +40,7 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
+          color: const Color.fromARGB(255, 228, 225, 225),
           elevation: 4,
           shadowColor: Colors.black54,
           shape: RoundedRectangleBorder(
@@ -79,11 +80,11 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
                   ),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 ElevatedContainerRow(
-                  leadingIcon: Icons.edit,
-                  label: 'EDIT PROFILE',
+                  leadingIcon: Icons.info,
+                  label: 'Personal Information',
                   backgroundColor: Colors.white,
                   textColor: Colors.black,
                   onTap: () {
@@ -91,11 +92,20 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
                   },
                 ),
                 const SizedBox(height: 10),
-
+                ElevatedContainerRow(
+                  leadingIcon: Icons.password,
+                  label: 'Change Password',
+                  backgroundColor: Colors.white,
+                  textColor: Colors.black,
+                  onTap: () {
+                    // l backend baba
+                  },
+                ),
+                const SizedBox(height: 10),
                 // Settings Row
                 ElevatedContainerRow(
-                  leadingIcon: Icons.settings,
-                  label: 'SETTINGS',
+                  leadingIcon: Icons.notifications,
+                  label: 'Notifications',
                   backgroundColor: Colors.white,
                   textColor: Colors.black,
                   onTap: () {
@@ -106,8 +116,18 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
 
                 // Help Row
                 ElevatedContainerRow(
+                  leadingIcon: Icons.privacy_tip,
+                  label: 'Privacy Settings',
+                  backgroundColor: Colors.white,
+                  textColor: Colors.black,
+                  onTap: () {
+                    // l backend baba
+                  },
+                ),
+                const SizedBox(height: 10),
+                ElevatedContainerRow(
                   leadingIcon: Icons.help,
-                  label: 'HELP',
+                  label: 'Help',
                   backgroundColor: Colors.white,
                   textColor: Colors.black,
                   onTap: () {
