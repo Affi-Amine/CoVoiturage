@@ -48,70 +48,48 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Profile Picture and Name Row
-            Row(
-              children: [
-                CircleAvatar(
-                  // Replace this with the user's profile picture
-                  backgroundImage: AssetImage('assets/profile_picture.png'),
-                  radius: 40,
-                ),
-                const SizedBox(width: 20),
-                Text(
-                  'John Doe', // Replace this with the user's name
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+            ListTile(
+              leading: CircleAvatar(
+                // Replace this with the user's profile picture
+                backgroundImage: AssetImage('assets/images/user_avatar.png'),
+              ),
+              title: Text(
+                // Replace this with the user's name
+                'John Doe',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
-            const SizedBox(height: 20),
-
-            // Edit Profile Row
-            ElevatedContainerRow(
-              leadingIcon: Icons.edit,
+            SizedBox(height: 20),
+            _buildClickableRow(
+              icon: Icons.edit,
               label: 'EDIT PROFILE',
-              backgroundColor: Colors.white,
-              textColor: Colors.black,
-              onTap: () {
-                // Edit Profile functionality
+              onClick: () {
+                // Edit profile functionality
               },
             ),
-            const SizedBox(height: 10),
-
-            // Settings Row
-            ElevatedContainerRow(
-              leadingIcon: Icons.settings,
+            SizedBox(height: 10),
+            _buildClickableRow(
+              icon: Icons.settings,
               label: 'SETTINGS',
-              backgroundColor: Colors.white,
-              textColor: Colors.black,
-              onTap: () {
-                // Settings functionality
+              onClick: () {
+                // Settings button functionality
               },
             ),
-            const SizedBox(height: 10),
-
-            // Help Row
-            ElevatedContainerRow(
-              leadingIcon: Icons.help,
+            SizedBox(height: 10),
+            _buildClickableRow(
+              icon: Icons.help,
               label: 'HELP',
-              backgroundColor: Colors.white,
-              textColor: Colors.black,
-              onTap: () {
-                // Help functionality
+              onClick: () {
+                // Help button functionality
               },
             ),
-            const SizedBox(height: 10),
-
-            // Logout Row
-            ElevatedContainerRow(
-              leadingIcon: Icons.logout,
+            SizedBox(height: 10),
+            _buildClickableRow(
+              icon: Icons.logout,
               label: 'LOGOUT',
               backgroundColor: Colors.red,
-              textColor: Colors.white,
-              onTap: () {
-                // Logout functionality
+              onClick: () {
+                // Logout button functionality
               },
             ),
           ],
@@ -119,48 +97,29 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
       ),
     );
   }
-}
 
-class ElevatedContainerRow extends StatelessWidget {
-  final IconData leadingIcon;
-  final String label;
-  final Color backgroundColor;
-  final Color textColor;
-  final VoidCallback? onTap;
-
-  const ElevatedContainerRow({
-    required this.leadingIcon,
-    required this.label,
-    required this.backgroundColor,
-    required this.textColor,
-    this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: backgroundColor,
+  Widget _buildClickableRow({
+    required IconData icon,
+    required String label,
+    Color? backgroundColor,
+    required VoidCallback onClick,
+  }) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: ElevatedButton.icon(
+        onPressed: onClick,
+        style: ElevatedButton.styleFrom(
+          primary: backgroundColor,
+          elevation: 4,
+          shadowColor: Colors.black54,
         ),
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-        child: Row(
-          children: [
-            Icon(
-              leadingIcon,
-              color: textColor,
-            ),
-            const SizedBox(width: 20),
-            Text(
-              label,
-              style: TextStyle(
-                color: textColor,
-                fontSize: 18,
-              ),
-            ),
-          ],
+        icon: Icon(
+          icon,
+          color: Colors.white,
+        ),
+        label: Text(
+          label,
+          style: TextStyle(color: Colors.white),
         ),
       ),
     );
