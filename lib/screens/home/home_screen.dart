@@ -429,4 +429,3 @@ class _NumberPickerDialogState extends State<NumberPickerDialog> {
     );
   }
 }
-

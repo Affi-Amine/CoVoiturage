@@ -1,81 +1,131 @@
 import 'package:flutter/material.dart';
 
-class Todo {
-  final String title;
-  final String description;
 
-  const Todo(this.title, this.description);
-}
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
-void main() {
-  runApp(
-    MaterialApp(
-      title: 'Passing Data',
-      home: TodosScreen(
-        todos: List.generate(
-          20,
-              (i) => Todo(
-            'Todo $i',
-            'A description of what needs to be done for Todo $i',
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color.fromRGBO(161, 232, 175, 1),
+              Color.fromRGBO(58, 36, 73, 1),
+            ],
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp,
+            transform: GradientRotation(130 * 3.1415927 / 180),
           ),
         ),
-      ),
-    ),
-  );
-}
+        child: ProfileContentCard(),
 
-class TodosScreen extends StatelessWidget {
-  const TodosScreen({super.key, required this.todos});
-
-  final List<Todo> todos;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Todos'),
-      ),
-      body: ListView.builder(
-        itemCount: todos.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(todos[index].title),
-            // When a user taps the ListTile, navigate to the DetailScreen.
-            // Notice that you're not only creating a DetailScreen, you're
-            // also passing the current todo through to it.
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(todo: todos[index]),
-                ),
-              );
-            },
-          );
-        },
       ),
     );
   }
 }
 
-class DetailScreen extends StatelessWidget {
-  // In the constructor, require a Todo.
-  const DetailScreen({super.key, required this.todo});
 
-  // Declare a field that holds the Todo.
-  final Todo todo;
+class ProfileContentCard extends StatefulWidget {
+  const ProfileContentCard({Key? key}) : super(key: key);
 
   @override
+  State<ProfileContentCard> createState() => _ProfileContentCardState();
+}
+
+class _ProfileContentCardState extends State<ProfileContentCard> {
+  @override
   Widget build(BuildContext context) {
-    // Use the Todo to create the UI.
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(todo.title),
+    return Card(
+      elevation: 4,
+      shadowColor: Colors.black54,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Text(todo.description),
+      margin: const EdgeInsets.all(10),
+      child: Padding(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: CircleAvatar(
+                // Replace this with the user's profile picture
+                backgroundImage: AssetImage('assets/images/user_avatar.png'),
+              ),
+              title: Text(
+                // Replace this with the user's name
+                'John Doe',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(height: 20),
+            _buildClickableRow(
+              icon: Icons.edit,
+              label: 'EDIT PROFILE',
+              onClick: () {
+                // Edit profile functionality
+              },
+            ),
+            SizedBox(height: 10),
+            _buildClickableRow(
+              icon: Icons.settings,
+              label: 'SETTINGS',
+              onClick: () {
+                // Settings button functionality
+              },
+            ),
+            SizedBox(height: 10),
+            _buildClickableRow(
+              icon: Icons.help,
+              label: 'HELP',
+              onClick: () {
+                // Help button functionality
+              },
+            ),
+            SizedBox(height: 10),
+            _buildClickableRow(
+              icon: Icons.logout,
+              label: 'LOGOUT',
+              backgroundColor: Colors.red,
+              onClick: () {
+                // Logout button functionality
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildClickableRow({
+    required IconData icon,
+    required String label,
+    Color? backgroundColor,
+    required VoidCallback onClick,
+  }) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: ElevatedButton.icon(
+        onPressed: onClick,
+        style: ElevatedButton.styleFrom(
+          primary: backgroundColor,
+          elevation: 4,
+          shadowColor: Colors.black54,
+        ),
+        icon: Icon(
+          icon,
+          color: Colors.white,
+        ),
+        label: Text(
+          label,
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
 }
+
