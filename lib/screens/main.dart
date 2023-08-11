@@ -2,7 +2,7 @@
 //import 'package:covoiturage/screens/authentication/welcome.dart';
 import 'package:covoiturage/screens/authentication/welcome.dart';
 import 'package:covoiturage/screens/home/home_screen.dart';
-import 'package:covoiturage/screens/publish/pub_main.dart';
+import 'package:covoiturage/screens/home/personal_info_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:go_router/go_router.dart';

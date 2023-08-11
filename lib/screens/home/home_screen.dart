@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
       size: 30,
     ),
     Icon(
-      Icons.publish_sharp,
+      Icons.add,
       color: Colors.white,
       size: 30,
     ),
