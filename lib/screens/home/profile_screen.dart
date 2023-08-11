@@ -1,6 +1,9 @@
+import 'package:covoiturage/screens/home/personal_info_settings.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/widgets/elevated_container_row.dart';
+import 'change_pwd_screen.dart';
+import 'notifications_sheet.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -82,15 +85,22 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
                 const SizedBox(
                   height: 30,
                 ),
-                ElevatedContainerRow(
-                  leadingIcon: Icons.info,
-                  label: 'Personal Information',
-                  backgroundColor: Colors.white,
-                  textColor: Colors.black,
+                GestureDetector(
                   onTap: () {
-                    // l backend baba
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProfileSettingsScreen()),
+                    );
                   },
+                  child: const ElevatedContainerRow(
+                    leadingIcon: Icons.info,
+                    label: 'Personal Information',
+                    backgroundColor: Colors.white,
+                    textColor: Colors.black,
+                  ),
                 ),
+
                 const SizedBox(height: 10),
                 ElevatedContainerRow(
                   leadingIcon: Icons.password,
@@ -98,7 +108,7 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
                   backgroundColor: Colors.white,
                   textColor: Colors.black,
                   onTap: () {
-                    // l backend baba
+                    _showChangePasswordBottomSheet(context);
                   },
                 ),
                 const SizedBox(height: 10),
@@ -109,7 +119,7 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
                   backgroundColor: Colors.white,
                   textColor: Colors.black,
                   onTap: () {
-                    // l backend baba
+                    _showNotificationsBottomSheet(context);
                   },
                 ),
                 const SizedBox(height: 10),
@@ -151,4 +161,24 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
           )),
     );
   }
+
+  void _showChangePasswordBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return const ChangePasswordBottomSheet();
+      },
+    );
+  }
+}
+
+void _showNotificationsBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    builder: (BuildContext context) {
+      return const NotificationsBottomSheet();
+    },
+  );
 }

@@ -2,6 +2,7 @@
 //import 'package:covoiturage/screens/authentication/welcome.dart';
 import 'package:covoiturage/screens/authentication/welcome.dart';
 import 'package:covoiturage/screens/home/home_screen.dart';
+import 'package:covoiturage/screens/home/personal_info_settings.dart';
 import 'package:flutter/material.dart';
 
 void main() {
