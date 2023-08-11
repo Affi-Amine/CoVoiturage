@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AppColors {
   static const Color primaryColor = Color(0xFFA1E8AF);
@@ -7,3 +8,5 @@ class AppColors {
   static const Color quaternaryColor = Color(0xFF372772);
   static const Color quintenaryColor = Color(0xFF3A2449);
 }
+
+
