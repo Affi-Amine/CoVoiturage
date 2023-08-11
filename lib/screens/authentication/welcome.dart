@@ -4,8 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:covoiturage/constants/app_colors.dart';
 
 
-class Welcome extends StatelessWidget {
+class Welcome extends StatefulWidget {
+  const Welcome({super.key});
 
+  @override
+  State<Welcome> createState() => _WelcomeState();
+}
+
+class _WelcomeState extends State<Welcome> {
+  int index=0;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -135,5 +142,5 @@ class Welcome extends StatelessWidget {
 
     );
   }
-}
+  }
 

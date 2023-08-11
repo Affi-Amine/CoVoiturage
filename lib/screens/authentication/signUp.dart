@@ -1,3 +1,4 @@
+import 'package:covoiturage/screens/authentication/signIn.dart';
 import 'package:flutter/material.dart';
 import 'package:covoiturage/constants/app_colors.dart';
 import 'package:covoiturage/screens/authentication/BoxTextField.dart';
@@ -81,7 +82,7 @@ class SignUp extends StatelessWidget {
                           ),
                           labelStyle: const TextStyle(
                             color: Colors.grey,
-                            fontStyle: FontStyle.italic,
+                            //fontStyle: FontStyle.italic,
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0),
@@ -179,11 +180,29 @@ class SignUp extends StatelessWidget {
                               color: Colors.grey[400],
                             ),
                           ),
-                          const Text(
-                            '   Log in now',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.blue,
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              showGeneralDialog(
+                                  barrierDismissible: true,
+                                  barrierLabel: "Sign Up",
+                                  context: context,
+                                  pageBuilder:(context, _, __) =>Center(
+                                    child: Container(
+                                      height: 650,
+
+                                      margin: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+                                      child: SignIn(  ),
+                                    ),
+                                  )
+                              );
+                            },
+                            child: const Text(
+                              '   Log in now',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.blue,
+                              ),
                             ),
                           )
                         ],
