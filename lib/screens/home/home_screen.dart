@@ -1,9 +1,12 @@
+import 'package:covoiturage/screens/authentication/BoxTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:covoiturage/screens/home/profile_screen.dart';
 import 'package:covoiturage/screens/home/publish_screen.dart';
 //import 'package:covoiturage/screens/home/search_screen.dart';
 import 'package:intl/intl.dart';
+
+import 'chat_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,6 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
     Icon(
       Icons.add,
+      color: Colors.white,
+      size: 30,
+    ),
+    Icon(
+      Icons.chat,
       color: Colors.white,
       size: 30,
     ),
@@ -56,8 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             colors: [
-              Color.fromRGBO(161, 232, 175, 1),
-              Color.fromRGBO(58, 36, 73, 1),
+              Color.fromRGBO(224, 51, 224, 1),
+              Color.fromRGBO(75, 3, 122, 1),
             ],
             stops: [0.0, 1.0],
             tileMode: TileMode.clamp,
@@ -71,7 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ? HomeContentCard()
                 : (index == 1
                     ? const PublishScreen()
-                    : (index == 2 ? ProfileScreen() : const SizedBox())),
+                    : (index == 2
+                        ? const ChatScreen()
+                        : const ProfileScreen())),
           ),
         ),
       ),
@@ -153,6 +163,29 @@ class _HomeContentCardState extends State<HomeContentCard> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // GestureDetector(
+            //   onTap: () {
+            //     try {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (context) => const PlaceSelectionScreen(
+            //             title: 'Select Place of Departure',
+            //           ),
+            //         ),
+            //       );
+            //     } catch (e) {
+            //       print("Error during navigation: $e");
+            //     }
+            //   },
+            //   child: BoxTextField(
+            //     controller: _departureController,
+            //     hintText: "Departure Place",
+            //     obscureText: false,
+            //     icon: Icons.departure_board,
+            //   ),
+            // ),
+
             TextFormField(
               controller: _departureController,
               onTap: () {
@@ -284,8 +317,8 @@ class PlaceSelectionScreen extends StatelessWidget {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             colors: [
-              Color.fromRGBO(161, 232, 175, 1),
-              Color.fromRGBO(58, 36, 73, 1),
+              Color.fromRGBO(224, 51, 224, 1),
+              Color.fromRGBO(75, 3, 122, 1),
             ],
             stops: [0.0, 1.0],
             tileMode: TileMode.clamp,

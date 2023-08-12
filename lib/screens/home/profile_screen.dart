@@ -1,3 +1,4 @@
+import 'package:covoiturage/screens/home/help_screen.dart';
 import 'package:covoiturage/screens/home/personal_info_settings.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +18,8 @@ class ProfileScreen extends StatelessWidget {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             colors: [
-              Color.fromRGBO(161, 232, 175, 1),
-              Color.fromRGBO(58, 36, 73, 1),
+              Color.fromRGBO(224, 51, 224, 1),
+              Color.fromRGBO(75, 3, 122, 1),
             ],
             stops: [0.0, 1.0],
             tileMode: TileMode.clamp,
@@ -141,7 +142,13 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
                   backgroundColor: Colors.white,
                   textColor: Colors.black,
                   onTap: () {
-                    // l backend baba
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            HelpScreen(), // Navigate to the HelpScreen
+                      ),
+                    );
                   },
                 ),
                 const SizedBox(height: 10),
