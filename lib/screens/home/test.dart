@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -21,10 +22,12 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
         child: ProfileContentCard(),
+
       ),
     );
   }
 }
+
 
 class ProfileContentCard extends StatefulWidget {
   const ProfileContentCard({Key? key}) : super(key: key);
@@ -125,3 +128,4 @@ class _ProfileContentCardState extends State<ProfileContentCard> {
     );
   }
 }
+

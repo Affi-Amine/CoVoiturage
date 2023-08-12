@@ -167,6 +167,7 @@ class SignIn extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
+                              Navigator.pop(context);
                               showGeneralDialog(
                                   barrierDismissible: true,
                                   barrierLabel: "Sign Up",
