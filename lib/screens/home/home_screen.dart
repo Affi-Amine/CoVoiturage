@@ -1,7 +1,7 @@
 import 'package:covoiturage/screens/authentication/BoxTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:covoiturage/screens/home/profile_screen.dart';
+import 'package:covoiturage/screens/profile/profile_screen.dart';
 import 'package:covoiturage/screens/home/publish_screen.dart';
 //import 'package:covoiturage/screens/home/search_screen.dart';
 import 'package:intl/intl.dart';

@@ -1,5 +1,5 @@
-import 'package:covoiturage/screens/home/help_screen.dart';
-import 'package:covoiturage/screens/home/personal_info_settings.dart';
+import 'package:covoiturage/screens/profile/help_screen.dart';
+import 'package:covoiturage/screens/profile/personal_info_settings.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/widgets/elevated_container_row.dart';
