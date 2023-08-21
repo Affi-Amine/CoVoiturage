@@ -1,16 +1,16 @@
-import 'package:covoiturage/screens/authentication/BoxTextField.dart';
+import 'package:covoiturage/screens/publish/location_field.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:covoiturage/screens/home/profile_screen.dart';
 import 'package:covoiturage/screens/home/publish_screen.dart';
+import 'package:go_router/go_router.dart';
 //import 'package:covoiturage/screens/home/search_screen.dart';
 import 'package:intl/intl.dart';
 
 import 'chat_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
+  HomeScreen({Key? key}) : super(key: key);
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -78,10 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: index == 0
                 ? HomeContentCard()
                 : (index == 1
-                    ? const PublishScreen()
-                    : (index == 2
-                        ? const ChatScreen()
-                        : const ProfileScreen())),
+                    ?  Location_field(title: 'Pick Up')
+                    : (index == 2 ? ProfileScreen() : const SizedBox())),
           ),
         ),
       ),
