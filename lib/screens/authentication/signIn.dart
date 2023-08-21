@@ -175,7 +175,6 @@ class SignIn extends StatelessWidget {
                                   pageBuilder:(context, _, __) =>Center(
                                     child: Container(
                                       height: 650,
-
                                       margin: EdgeInsets.symmetric(horizontal: 15,vertical: 20),
                                       child: SignUp(  ),
                                     ),
